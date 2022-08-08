@@ -7,3 +7,4 @@ variable "ENV" {}
 variable "INSTANCE_TYPE" {}
 variable "WORKSTATION_IP" {}
 variable "COMPONENT" {}
+variable "INSTANCE_COUNT" {}
