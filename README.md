@@ -1,1 +1,1 @@
-# tf-module-mutable-app
+# tf-module-rabbitmq
