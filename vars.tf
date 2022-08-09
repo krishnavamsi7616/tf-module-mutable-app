@@ -9,3 +9,4 @@ variable "WORKSTATION_IP" {}
 variable "COMPONENT" {}
 variable "INSTANCE_COUNT" {}
 variable "LB_ARN" {}
+variable "LB_TYPE" {}

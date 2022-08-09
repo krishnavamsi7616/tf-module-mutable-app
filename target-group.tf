@@ -24,3 +24,16 @@ resource "aws_lb_target_group_attachment" "attach" {
   port             = var.PORT
 }
 
+resource "aws_lb_listener" "frontend" {
+  count             = var.LB_TYPE == "public" ? 1 : 0
+  load_balancer_arn = var.LB_ARN
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  certificate_arn   = "arn:aws:acm:us-east-1:794750663080:certificate/816d3e06-deab-4142-abdd-ed71142ca0d9"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.target-group.arn
+  }
+}
