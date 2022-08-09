@@ -16,9 +16,10 @@ resource "aws_lb_target_group" "target-group" {
 }
 
 
-resource "aws_lb_target_group_attachment" "attache" {
+resource "aws_lb_target_group_attachment" "attach" {
   count = var.INSTANCE_COUNT
   target_group_arn = var.LB_ARN
   target_id        = aws_spot_instance_request.instance.*.spot_instance_id[count.index]
   port             = var.PORT
 }
+
