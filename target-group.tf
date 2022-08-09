@@ -6,7 +6,7 @@ resource "aws_lb_target_group" "target-group" {
 
 
 
-  health_check = {
+  health_check {
     enabled = true
     healthy_threshold = 2
     unhealthy_threshold = 2
