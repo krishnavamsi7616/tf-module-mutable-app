@@ -20,3 +20,6 @@ variable "DOCDB_ENDPOINT" {
 variable "REDIS_ENDPOINT" {
   default = "null"
 }
+variable "MYSQL_ENDPOINT" {
+  default = "null"
+}
