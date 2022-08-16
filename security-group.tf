@@ -19,6 +19,14 @@ resource "aws_security_group" "main" {
     cidr_blocks = [var.WORKSTATION_IP]
   }
 
+  ingress {
+    description = "SSH"
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "TCP"
+    cidr_blocks = [var.PROMETHEUS_IP]
+  }
+
 
   egress {
     from_port   = 0

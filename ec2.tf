@@ -26,6 +26,19 @@ resource "aws_instance" "instance" {
     }
   }
 
+resource "aws_ec2_tag" "name-tag" {
+  count       = var.INSTANCE_COUNT
+  resource_id = aws_instance.instance.*.id[count.index]
+  key         = "Name"
+  value       = local.TAG_PREFIX
+}
+
+resource "aws_ec2_tag" "monitor-tag" {
+  count       = var.INSTANCE_COUNT
+  resource_id = aws_instance.instance.*.id[count.index]
+  key         = "Monitor"
+  value       = "yes"
+}
 
 
 resource "null_resource" "ansible" {
