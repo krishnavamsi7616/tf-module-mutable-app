@@ -14,12 +14,19 @@ resource "aws_lb_target_group" "target-group" {
   }
 }
 
+#resource "aws_lb_target_group_attachment" "attach" {
+#  count            = var.INSTANCE_COUNT
+#  target_group_arn = aws_lb_target_group.target-group.arn
+#  target_id        = aws_spot_instance_request.instance.*.spot_instance_id[count.index]
+#  port             = var.PORT
+#}
+
 resource "aws_lb_target_group_attachment" "attach" {
-  count            = var.INSTANCE_COUNT
-  target_group_arn = aws_lb_target_group.target-group.arn
-  target_id        = aws_spot_instance_request.instance.*.spot_instance_id[count.index]
-  port             = var.PORT
-}
+    count            = var.INSTANCE_COUNT
+    target_group_arn = aws_lb_target_group.target-group.arn
+    target_id        = aws_instance.instance.*.id[count.index]
+    port             = var.PORT
+  }
 
 resource "aws_lb_listener" "frontend" {
   count             = var.LB_TYPE == "public" ? 1 : 0
