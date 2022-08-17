@@ -29,7 +29,7 @@ resource "aws_instance" "instance" {
 
 resource "aws_ec2_tag" "monitor-tag" {
   count       = var.INSTANCE_COUNT
-  resource_id = aws_spot_instance_request.instance.*.spot_instance_id[count.index]
+  resource_id = aws_instance.instance.*.id[count.index]
   key         = "Monitor"
   value       = "yes"
 }
