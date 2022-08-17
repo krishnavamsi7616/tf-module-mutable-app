@@ -27,7 +27,6 @@ resource "aws_security_group" "main" {
     cidr_blocks = [var.PROMETHEUS_IP]
   }
 
-
   egress {
     from_port   = 0
     to_port     = 0
