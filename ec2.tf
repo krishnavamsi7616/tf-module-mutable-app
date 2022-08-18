@@ -26,6 +26,9 @@ resource "aws_ec2_tag" "monitor-tag" {
 }
 
 resource "null_resource" "ansible" {
+  triggers = {
+    abc = timestamp()
+  }
   count        = var.INSTANCE_COUNT
   provisioner "remote-exec" {
     connection {
